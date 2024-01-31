@@ -1,19 +1,14 @@
-<h1 align="center">Ops, you find me :)</h1>
+### Ops, you find me :)
 
-<h3 align="center">Working</h3>
+- Hi, I am GentleCold, currently studying at East China Normal University.
 
-<p align="center">
-  <img src="https://wakatime.com/share/@018d6097-8125-449f-ae6c-f7d920e82a17/8f6580f8-b8bc-4108-bdf2-ae44d3c1bf2f.svg" width="50%"/>
-</p>
-
-<h3 align="center">Languages</h3>
+- You can see my code activity:
 
 <p align="center">
-  <a href="https://github.com/GentleCold"><img src="https://github-readme-stats.vercel.app/api/top-langs/?username=GentleCold&hide_border=true&hide=jupyter notebook&hide_title=true" alt="Most used languages"></a>
+  <img src="https://wakatime.com/share/@018d6097-8125-449f-ae6c-f7d920e82a17/7f92d7ff-ab1e-4f1d-a407-fb3027e12549.svg"/>
 </p>
 
-<h3 align="center">Stats</h3>
+- And my github stats:
 
-<p align="center">
-<a href="https://github.com/GentleCold"><img src="https://github-readme-stats.vercel.app/api?username=GentleCold&hide_border=true&show_icons=true&hide_title=true" alt="GentleCold's github stats"></a>
-</p>
+| <a href="https://github.com/GentleCold"><img align="center" src="https://github-readme-stats.vercel.app/api?username=GentleCold&show_icons=true&include_all_commits=true&hide_border=true" alt="GentleCold's github stats" /></a> | <a href="https://github.com/GentleCold"><img align="center" src="https://github-readme-stats.vercel.app/api/top-langs/?username=GentleCold&layout=compact&hide_border=true&hide=jupyter%20notebook" /></a> |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

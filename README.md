@@ -2,7 +2,7 @@
 
 - 🎓 Pursuing master's degree in ECNU.
 - 🧐 Interested in LLM inference acceleration and KV cache systems.
-- 🧠 Working on GPU/SSD offloading, distributed cache sharing, and RAG-native KV cache infrastructure.
+- ⚡️ Working on GPU/SSD offloading and distributed cache sharing.
 - 🐧 Using Arch Linux btw.
 
 #### Selected Work 🎯
@@ -13,5 +13,5 @@
 - [nano-vllm](https://github.com/GentleCold/nano-vllm): learning and experimenting with compact vLLM-style inference systems.
 
 <p>
-  <img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=GentleCold&theme=transparent" alt="GentleCold's GitHub profile summary" />
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=GentleCold&theme=github-compact&hide_border=true&area=true" alt="GentleCold's GitHub activity graph" />
 </p>

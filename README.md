@@ -1,9 +1,17 @@
 ### Hi 👋, I'm [GentleCold](https://gentlecold.top)
 
-- 🎓 Pursuing bachelor degree in ECNU.
-- 🧐 Interested in Database Management System.
-- 🎯 Trying to make open source contributions.
-- 🐧 Using ArchLinux btw.
+- 🎓 Pursuing master's degree in ECNU.
+- 🧐 Interested in LLM inference acceleration and KV cache systems.
+- 🧠 Working on GPU/SSD offloading, distributed cache sharing, and RAG-native KV cache infrastructure.
+- 🐧 Using Arch Linux btw.
 
-| <a href="https://github.com/GentleCold"><img align="center" src="https://github-readme-stats.vercel.app/api?username=GentleCold&show_icons=true&include_all_commits=true&hide_border=true&theme=transparent" alt="GentleCold's github stats" /></a> | <a href="https://github.com/GentleCold"><img align="center" src="https://github-readme-stats.vercel.app/api/top-langs/?username=GentleCold&layout=compact&hide_border=true&hide=jupyter%20notebook&theme=transparent" /></a> |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+#### Selected Work 🎯
+
+- [DaseR](https://github.com/GentleCold/DaseR): RAG-native KV cache service for LLM inference.
+- [pegaflow](https://github.com/GentleCold/pegaflow): high-performance KV cache storage with GPU offloading, SSD caching, and RDMA-based sharing.
+- [LMCache](https://github.com/GentleCold/LMCache): exploring KV cache reuse and offloading for LLM serving.
+- [nano-vllm](https://github.com/GentleCold/nano-vllm): learning and experimenting with compact vLLM-style inference systems.
+
+<p>
+  <img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=GentleCold&theme=transparent" alt="GentleCold's GitHub profile summary" />
+</p>

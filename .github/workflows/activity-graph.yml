@@ -2,7 +2,7 @@ name: Activity graph
 
 on:
   schedule:
-    - cron: "17 0 * * *"
+    - cron: "17 */6 * * *"
   workflow_dispatch:
 
 permissions:
@@ -16,7 +16,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Render monthly contribution graph
+      - name: Render last-7-days contribution graph
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python scripts/activity_graph.py GentleCold imgs/activity-graph.svg

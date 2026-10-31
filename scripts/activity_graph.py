@@ -1,7 +1,7 @@
-"""Render a monthly GitHub contribution line chart as SVG.
+"""Render a GitHub contribution line chart for the last 7 days as SVG.
 
 Mimics github-readme-activity-graph (theme=github-compact, area=true),
-but buckets contributions per calendar month over the last year instead of per day.
+with one point per day over the last week.
 
 Usage: GITHUB_TOKEN=... python scripts/activity_graph.py <username> <output.svg>
 """
@@ -30,7 +30,7 @@ LEFT, RIGHT, TOP, BOTTOM = 90, 1150, 80, 350
 LINE, POINT, TEXT = "#26a641", "#8b949e", "#8b949e"
 
 
-def fetch_months(login: str, token: str) -> list[tuple[date, int]]:
+def fetch_days(login: str, token: str, num_days: int = 7) -> list[tuple[date, int]]:
     body = json.dumps({"query": QUERY, "variables": {"login": login}}).encode()
     req = urllib.request.Request(
         "https://api.github.com/graphql",
@@ -42,14 +42,13 @@ def fetch_months(login: str, token: str) -> list[tuple[date, int]]:
     if "errors" in payload:
         raise RuntimeError(payload["errors"])
     weeks = payload["data"]["user"]["contributionsCollection"]["contributionCalendar"]["weeks"]
-    months: dict[date, int] = {}
-    for w in weeks:
-        for d in w["contributionDays"]:
-            day = date.fromisoformat(d["date"])
-            key = day.replace(day=1)
-            months[key] = months.get(key, 0) + d["contributionCount"]
-    # The calendar starts mid-month a year ago; keep the last 12 calendar months.
-    return sorted(months.items())[-12:]
+    days = [
+        (date.fromisoformat(d["date"]), d["contributionCount"])
+        for w in weeks
+        for d in w["contributionDays"]
+    ]
+    # The calendar ends today, so the last point is a partial day.
+    return days[-num_days:]
 
 
 def nice_step(max_value: int) -> int:
@@ -88,11 +87,11 @@ def smooth_path(points: list[tuple[float, float]]) -> str:
     return "".join(out)
 
 
-def render(login: str, months: list[tuple[date, int]]) -> str:
-    counts = [c for _, c in months]
+def render(login: str, days: list[tuple[date, int]]) -> str:
+    counts = [c for _, c in days]
     step = nice_step(max(counts))
     top_value = step * max(1, math.ceil(max(counts) / step))
-    dx = (RIGHT - LEFT) / (len(months) - 1)
+    dx = (RIGHT - LEFT) / (len(days) - 1)
 
     def y_of(v: float) -> float:
         return BOTTOM - (BOTTOM - TOP) * v / top_value
@@ -102,12 +101,12 @@ def render(login: str, months: list[tuple[date, int]]) -> str:
     area = f"M{LEFT},{BOTTOM}L{line[1:]}L{RIGHT},{BOTTOM}Z"
 
     parts = []
-    for i, (month, _) in enumerate(months):
+    for i, (day, _) in enumerate(days):
         x = LEFT + i * dx
         parts.append(f'<line x1="{x:.2f}" x2="{x:.2f}" y1="{TOP}" y2="{BOTTOM}" class="grid"/>')
         parts.append(
             f'<text x="{x:.2f}" y="{BOTTOM + 22}" text-anchor="middle" class="label">'
-            f'{month.strftime("%b %y")}</text>'
+            f'{day.strftime("%m/%d %a")}</text>'
         )
     for v in range(0, top_value + 1, step):
         y = y_of(v)
@@ -133,7 +132,7 @@ def render(login: str, months: list[tuple[date, int]]) -> str:
 </style>
 <text x="{WIDTH / 2}" y="38" text-anchor="middle" class="title">{login}'s Contribution Graph</text>
 {chr(10).join(parts)}
-<text x="{(LEFT + RIGHT) / 2}" y="{HEIGHT - 20}" text-anchor="middle" class="label">Months</text>
+<text x="{(LEFT + RIGHT) / 2}" y="{HEIGHT - 20}" text-anchor="middle" class="label">Days</text>
 <text x="20" y="{(TOP + BOTTOM) / 2}" transform="rotate(-90, 20, {(TOP + BOTTOM) / 2})" text-anchor="middle" dominant-baseline="hanging" class="label">Contributions</text>
 </svg>
 """
@@ -141,10 +140,10 @@ def render(login: str, months: list[tuple[date, int]]) -> str:
 
 def main() -> None:
     login, output = sys.argv[1], sys.argv[2]
-    months = fetch_months(login, os.environ["GITHUB_TOKEN"])
+    days = fetch_days(login, os.environ["GITHUB_TOKEN"])
     os.makedirs(os.path.dirname(output) or ".", exist_ok=True)
     with open(output, "w") as f:
-        f.write(render(login, months))
+        f.write(render(login, days))
 
 
 if __name__ == "__main__":

@@ -12,19 +12,19 @@
 </style>
 <text x="600.0" y="38" text-anchor="middle" class="title">GentleCold's Contribution Graph</text>
 <line x1="90.00" x2="90.00" y1="80" y2="350" class="grid"/>
-<text x="90.00" y="372" text-anchor="middle" class="label">10/26 Mon</text>
+<text x="90.00" y="372" text-anchor="middle" class="label">10/25 Sun</text>
 <line x1="266.67" x2="266.67" y1="80" y2="350" class="grid"/>
-<text x="266.67" y="372" text-anchor="middle" class="label">10/27 Tue</text>
+<text x="266.67" y="372" text-anchor="middle" class="label">10/26 Mon</text>
 <line x1="443.33" x2="443.33" y1="80" y2="350" class="grid"/>
-<text x="443.33" y="372" text-anchor="middle" class="label">10/28 Wed</text>
+<text x="443.33" y="372" text-anchor="middle" class="label">10/27 Tue</text>
 <line x1="620.00" x2="620.00" y1="80" y2="350" class="grid"/>
-<text x="620.00" y="372" text-anchor="middle" class="label">10/29 Thu</text>
+<text x="620.00" y="372" text-anchor="middle" class="label">10/28 Wed</text>
 <line x1="796.67" x2="796.67" y1="80" y2="350" class="grid"/>
-<text x="796.67" y="372" text-anchor="middle" class="label">10/30 Fri</text>
+<text x="796.67" y="372" text-anchor="middle" class="label">10/29 Thu</text>
 <line x1="973.33" x2="973.33" y1="80" y2="350" class="grid"/>
-<text x="973.33" y="372" text-anchor="middle" class="label">10/31 Sat</text>
+<text x="973.33" y="372" text-anchor="middle" class="label">10/30 Fri</text>
 <line x1="1150.00" x2="1150.00" y1="80" y2="350" class="grid"/>
-<text x="1150.00" y="372" text-anchor="middle" class="label">11/01 Sun</text>
+<text x="1150.00" y="372" text-anchor="middle" class="label">10/31 Sat</text>
 <line x1="90" x2="1150" y1="350.00" y2="350.00" class="grid"/>
 <text x="80" y="354.00" text-anchor="end" class="label">0</text>
 <line x1="90" x2="1150" y1="323.00" y2="323.00" class="grid"/>
@@ -47,15 +47,15 @@
 <text x="80" y="111.00" text-anchor="end" class="label">45</text>
 <line x1="90" x2="1150" y1="80.00" y2="80.00" class="grid"/>
 <text x="80" y="84.00" text-anchor="end" class="label">50</text>
-<path d="M90,350L90.00,350.00C148.89,350.00,207.78,350.00,266.67,350.00C325.56,350.00,384.44,344.60,443.33,344.60C502.22,344.60,561.11,344.60,620.00,344.60C678.89,344.60,737.78,344.60,796.67,306.80C855.56,269.00,914.44,96.20,973.33,96.20C1032.22,96.20,1091.11,215.00,1150.00,274.40L1150,350Z" class="area"/>
-<path d="M90.00,350.00C148.89,350.00,207.78,350.00,266.67,350.00C325.56,350.00,384.44,344.60,443.33,344.60C502.22,344.60,561.11,344.60,620.00,344.60C678.89,344.60,737.78,344.60,796.67,306.80C855.56,269.00,914.44,96.20,973.33,96.20C1032.22,96.20,1091.11,215.00,1150.00,274.40" class="line"/>
+<path d="M90,350L90.00,350.00C148.89,350.00,207.78,350.00,266.67,350.00C325.56,350.00,384.44,350.00,443.33,350.00C502.22,350.00,561.11,344.60,620.00,344.60C678.89,344.60,737.78,344.60,796.67,344.60C855.56,344.60,914.44,341.90,973.33,301.40C1032.22,260.90,1091.11,168.20,1150.00,101.60L1150,350Z" class="area"/>
+<path d="M90.00,350.00C148.89,350.00,207.78,350.00,266.67,350.00C325.56,350.00,384.44,350.00,443.33,350.00C502.22,350.00,561.11,344.60,620.00,344.60C678.89,344.60,737.78,344.60,796.67,344.60C855.56,344.60,914.44,341.90,973.33,301.40C1032.22,260.90,1091.11,168.20,1150.00,101.60" class="line"/>
 <line x1="90.00" y1="350.00" x2="90.01" y2="350.00" class="point"><title>0</title></line>
 <line x1="266.67" y1="350.00" x2="266.68" y2="350.00" class="point"><title>0</title></line>
-<line x1="443.33" y1="344.60" x2="443.34" y2="344.60" class="point"><title>1</title></line>
+<line x1="443.33" y1="350.00" x2="443.34" y2="350.00" class="point"><title>0</title></line>
 <line x1="620.00" y1="344.60" x2="620.01" y2="344.60" class="point"><title>1</title></line>
-<line x1="796.67" y1="306.80" x2="796.68" y2="306.80" class="point"><title>8</title></line>
-<line x1="973.33" y1="96.20" x2="973.34" y2="96.20" class="point"><title>47</title></line>
-<line x1="1150.00" y1="274.40" x2="1150.01" y2="274.40" class="point"><title>14</title></line>
+<line x1="796.67" y1="344.60" x2="796.68" y2="344.60" class="point"><title>1</title></line>
+<line x1="973.33" y1="301.40" x2="973.34" y2="301.40" class="point"><title>9</title></line>
+<line x1="1150.00" y1="101.60" x2="1150.01" y2="101.60" class="point"><title>46</title></line>
 <text x="620.0" y="400" text-anchor="middle" class="label">Days</text>
 <text x="20" y="215.0" transform="rotate(-90, 20, 215.0)" text-anchor="middle" dominant-baseline="hanging" class="label">Contributions</text>
 </svg>

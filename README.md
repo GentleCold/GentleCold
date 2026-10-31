@@ -10,8 +10,10 @@
 - [DaseR](https://github.com/GentleCold/DaseR): RAG-native KV cache service for LLM inference.
 - [pegaflow](https://github.com/GentleCold/pegaflow): high-performance KV cache storage with GPU offloading, SSD caching, and RDMA-based sharing.
 - [LMCache](https://github.com/GentleCold/LMCache): exploring KV cache reuse and offloading for LLM serving.
-- [nano-vllm](https://github.com/GentleCold/nano-vllm): learning and experimenting with compact vLLM-style inference systems.
+- [Mooncake](https://github.com/GentleCold/Mooncake): KV cache-centric disaggregated serving; contributing to Mooncake Store.
+- [vLLM](https://github.com/vllm-project/vllm): the inference engine my KV cache connectors plug into.
+- [SGLang](https://github.com/sgl-project/sglang): exploring KV cache offloading and sharing in SGLang serving.
 
 <p>
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=GentleCold&theme=github-compact&hide_border=true&area=true" alt="GentleCold's GitHub activity graph" />
+  <img src="https://ghchart.rshah.org/40c463/GentleCold" alt="GentleCold's GitHub contribution graph" />
 </p>

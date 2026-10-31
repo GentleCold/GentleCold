@@ -13,7 +13,3 @@
 - [Mooncake](https://github.com/GentleCold/Mooncake): KV cache-centric disaggregated serving; contributing to Mooncake Store.
 - [vLLM](https://github.com/vllm-project/vllm): the inference engine my KV cache connectors plug into.
 - [SGLang](https://github.com/sgl-project/sglang): exploring KV cache offloading and sharing in SGLang serving.
-
-<p>
-  <img src="./imgs/activity-graph.svg" alt="GentleCold's GitHub contributions over the last 7 days" />
-</p>

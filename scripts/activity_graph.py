@@ -1,7 +1,7 @@
-"""Render a weekly GitHub contribution line chart as SVG.
+"""Render a monthly GitHub contribution line chart as SVG.
 
 Mimics github-readme-activity-graph (theme=github-compact, area=true),
-but buckets contributions per week over the last year instead of per day.
+but buckets contributions per calendar month over the last year instead of per day.
 
 Usage: GITHUB_TOKEN=... python scripts/activity_graph.py <username> <output.svg>
 """
@@ -30,7 +30,7 @@ LEFT, RIGHT, TOP, BOTTOM = 90, 1150, 80, 350
 LINE, POINT, TEXT = "#26a641", "#8b949e", "#8b949e"
 
 
-def fetch_weeks(login: str, token: str) -> list[tuple[date, int]]:
+def fetch_months(login: str, token: str) -> list[tuple[date, int]]:
     body = json.dumps({"query": QUERY, "variables": {"login": login}}).encode()
     req = urllib.request.Request(
         "https://api.github.com/graphql",
@@ -42,11 +42,14 @@ def fetch_weeks(login: str, token: str) -> list[tuple[date, int]]:
     if "errors" in payload:
         raise RuntimeError(payload["errors"])
     weeks = payload["data"]["user"]["contributionsCollection"]["contributionCalendar"]["weeks"]
-    return [
-        (date.fromisoformat(w["contributionDays"][0]["date"]),
-         sum(d["contributionCount"] for d in w["contributionDays"]))
-        for w in weeks
-    ]
+    months: dict[date, int] = {}
+    for w in weeks:
+        for d in w["contributionDays"]:
+            day = date.fromisoformat(d["date"])
+            key = day.replace(day=1)
+            months[key] = months.get(key, 0) + d["contributionCount"]
+    # The calendar starts mid-month a year ago; keep the last 12 calendar months.
+    return sorted(months.items())[-12:]
 
 
 def nice_step(max_value: int) -> int:
@@ -85,11 +88,11 @@ def smooth_path(points: list[tuple[float, float]]) -> str:
     return "".join(out)
 
 
-def render(login: str, weeks: list[tuple[date, int]]) -> str:
-    counts = [c for _, c in weeks]
+def render(login: str, months: list[tuple[date, int]]) -> str:
+    counts = [c for _, c in months]
     step = nice_step(max(counts))
     top_value = step * max(1, math.ceil(max(counts) / step))
-    dx = (RIGHT - LEFT) / (len(weeks) - 1)
+    dx = (RIGHT - LEFT) / (len(months) - 1)
 
     def y_of(v: float) -> float:
         return BOTTOM - (BOTTOM - TOP) * v / top_value
@@ -99,23 +102,17 @@ def render(login: str, weeks: list[tuple[date, int]]) -> str:
     area = f"M{LEFT},{BOTTOM}L{line[1:]}L{RIGHT},{BOTTOM}Z"
 
     parts = []
-    for i in range(len(weeks)):
+    for i, (month, _) in enumerate(months):
         x = LEFT + i * dx
         parts.append(f'<line x1="{x:.2f}" x2="{x:.2f}" y1="{TOP}" y2="{BOTTOM}" class="grid"/>')
+        parts.append(
+            f'<text x="{x:.2f}" y="{BOTTOM + 22}" text-anchor="middle" class="label">'
+            f'{month.strftime("%b %y")}</text>'
+        )
     for v in range(0, top_value + 1, step):
         y = y_of(v)
         parts.append(f'<line x1="{LEFT}" x2="{RIGHT}" y1="{y:.2f}" y2="{y:.2f}" class="grid"/>')
         parts.append(f'<text x="{LEFT - 10}" y="{y + 4:.2f}" text-anchor="end" class="label">{v}</text>')
-
-    # Label the first week of each month, like a calendar axis.
-    last_month = None
-    for i, (start, _) in enumerate(weeks):
-        if start.month != last_month and i > 0:
-            parts.append(
-                f'<text x="{LEFT + i * dx:.2f}" y="{BOTTOM + 22}" text-anchor="middle" class="label">'
-                f'{start.strftime("%b")}</text>'
-            )
-        last_month = start.month
 
     parts.append(f'<path d="{area}" class="area"/>')
     parts.append(f'<path d="{line}" class="line"/>')
@@ -136,7 +133,7 @@ def render(login: str, weeks: list[tuple[date, int]]) -> str:
 </style>
 <text x="{WIDTH / 2}" y="38" text-anchor="middle" class="title">{login}'s Contribution Graph</text>
 {chr(10).join(parts)}
-<text x="{(LEFT + RIGHT) / 2}" y="{HEIGHT - 20}" text-anchor="middle" class="label">Weeks</text>
+<text x="{(LEFT + RIGHT) / 2}" y="{HEIGHT - 20}" text-anchor="middle" class="label">Months</text>
 <text x="20" y="{(TOP + BOTTOM) / 2}" transform="rotate(-90, 20, {(TOP + BOTTOM) / 2})" text-anchor="middle" dominant-baseline="hanging" class="label">Contributions</text>
 </svg>
 """
@@ -144,10 +141,10 @@ def render(login: str, weeks: list[tuple[date, int]]) -> str:
 
 def main() -> None:
     login, output = sys.argv[1], sys.argv[2]
-    weeks = fetch_weeks(login, os.environ["GITHUB_TOKEN"])
+    months = fetch_months(login, os.environ["GITHUB_TOKEN"])
     os.makedirs(os.path.dirname(output) or ".", exist_ok=True)
     with open(output, "w") as f:
-        f.write(render(login, weeks))
+        f.write(render(login, months))
 
 
 if __name__ == "__main__":

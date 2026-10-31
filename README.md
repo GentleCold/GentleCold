@@ -15,5 +15,5 @@
 - [SGLang](https://github.com/sgl-project/sglang): exploring KV cache offloading and sharing in SGLang serving.
 
 <p>
-  <img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=GentleCold&theme=github" alt="GentleCold's GitHub contributions in the last year" />
+  <img src="./imgs/activity-graph.svg" alt="GentleCold's weekly GitHub contributions over the last year" />
 </p>
